@@ -1,3 +1,3 @@
-import { calculate } from "./modules/calculate.js";
+import { calculator } from "./modules/calculator.js";
 
-calculate.start();
+calculator.start();

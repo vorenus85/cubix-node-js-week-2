@@ -1,6 +1,7 @@
 import readline from "readline";
+import { doArithmeticOperation } from "./operations.js";
 
-export const calculate = {
+export const calculator = {
   operation: {},
   numbers: {},
   myReadline: readline.createInterface({
@@ -31,16 +32,28 @@ export const calculate = {
     let result;
     switch (this.operation.sign) {
       case "+":
-        result = this.numbers.numA + this.numbers.numB;
+        result = doArithmeticOperation(
+          this.numbers.numA,
+          this.numbers.numB
+        ).addition();
         break;
       case "-":
-        result = this.numbers.numA - this.numbers.numB;
+        result = doArithmeticOperation(
+          this.numbers.numA,
+          this.numbers.numB
+        ).subtraction();
         break;
       case "*":
-        result = this.numbers.numA * this.numbers.numB;
+        result = doArithmeticOperation(
+          this.numbers.numA,
+          this.numbers.numB
+        ).multiplication();
         break;
       case "/":
-        result = this.numbers.numA / this.numbers.numB;
+        result = doArithmeticOperation(
+          this.numbers.numA,
+          this.numbers.numB
+        ).division();
         break;
     }
     console.log(
