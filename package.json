@@ -11,9 +11,13 @@
     "calculator",
     "nodejs"
   ],
+  "type": "module",
   "author": "Janos Perge",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
