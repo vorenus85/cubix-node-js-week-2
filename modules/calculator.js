@@ -15,7 +15,7 @@ export const calculator = {
         return this.chooseNumA();
       }
       this.numbers.numA = parseInt(input, 10);
-      this.chooseNumB();
+      return this.chooseNumB();
     });
   },
   chooseNumB() {
@@ -25,7 +25,7 @@ export const calculator = {
         return this.chooseNumB();
       }
       this.numbers.numB = parseInt(input, 10);
-      this.showResult();
+      return this.showResult();
     });
   },
   showResult() {
@@ -66,20 +66,16 @@ export const calculator = {
       switch (true) {
         case input === "+":
           this.operation.sign = "+";
-          this.chooseNumA();
-          break;
+          return this.chooseNumA();
         case input === "-":
           this.operation.sign = "-";
-          this.chooseNumA();
-          break;
+          return this.chooseNumA();
         case input === "*":
           this.operation.sign = "*";
-          this.chooseNumA();
-          break;
+          return this.chooseNumA();
         case input === "/":
           this.operation.sign = "/";
-          this.chooseNumA();
-          break;
+          return this.chooseNumA();
         default:
           console.log("Please choose valid operation sign: [-+/*]");
           return this.start();
