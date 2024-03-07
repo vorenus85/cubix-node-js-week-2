@@ -7,7 +7,7 @@ import {
 } from "./operations.js";
 
 export const calculator = {
-  operation: {},
+  operator: null,
   numbers: {},
   myReadline: readline.createInterface({
     input: process.stdin,
@@ -25,49 +25,53 @@ export const calculator = {
   },
   chooseNumB() {
     this.myReadline.question("Add num B: ", (input) => {
+      console.log("adasdasd", parseInt(input, 10), this.operation);
+      if (this.operator === "/" && parseInt(input, 10) === 0) {
+        console.log("If operation is division cannot add 0 to second argument");
+        return this.chooseNumB();
+      }
       if (isNaN(input) || !input) {
         console.log("Please give valid number");
         return this.chooseNumB();
       }
+
       this.numbers.numB = parseInt(input, 10);
       return this.showResult();
     });
   },
   showResult() {
-    let result;
-    switch (this.operation.sign) {
+    let final;
+    switch (this.operator) {
       case "+":
-        result = addition(this.numbers.numA, this.numbers.numB);
+        final = addition(this.numbers.numA, this.numbers.numB);
         break;
       case "-":
-        result = subtraction(this.numbers.numA, this.numbers.numB);
+        final = subtraction(this.numbers.numA, this.numbers.numB);
         break;
       case "*":
-        result = multiplication(this.numbers.numA, this.numbers.numB);
+        final = multiplication(this.numbers.numA, this.numbers.numB);
         break;
       case "/":
-        result = division(this.numbers.numA, this.numbers.numB);
+        final = division(this.numbers.numA, this.numbers.numB);
         break;
     }
-    console.log(
-      `${this.numbers.numA} ${this.operation.sign} ${this.numbers.numB} = ${result}`
-    );
+    console.log(`${final?.operationWithString}`);
     this.myReadline.close();
   },
   start() {
     this.myReadline.question("Choose operation sign: ", (input) => {
       switch (true) {
         case input === "+":
-          this.operation.sign = "+";
+          this.operator = "+";
           return this.chooseNumA();
         case input === "-":
-          this.operation.sign = "-";
+          this.operator = "-";
           return this.chooseNumA();
         case input === "*":
-          this.operation.sign = "*";
+          this.operator = "*";
           return this.chooseNumA();
         case input === "/":
-          this.operation.sign = "/";
+          this.operator = "/";
           return this.chooseNumA();
         default:
           console.log("Please choose valid operation sign: [-+/*]");

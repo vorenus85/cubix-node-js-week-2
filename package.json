@@ -15,9 +15,7 @@
   "author": "Janos Perge",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.3.0",
     "colors": "^1.4.0"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0"
   }
 }
