@@ -1,22 +1,12 @@
-//
-
-// addition
-// subtraction
-// multiplication
-// division
-export const doArithmeticOperation = (numA, numB) => {
-  return {
-    addition: () => {
-      return numA + numB;
-    },
-    subtraction: () => {
-      return numA - numB;
-    },
-    multiplication: () => {
-      return numA * numB;
-    },
-    division: () => {
-      return numA / numB;
-    },
-  };
+export const addition = (numA, numB) => {
+  return numA + numB;
+};
+export const subtraction = (numA, numB) => {
+  return numA - numB;
+};
+export const multiplication = (numA, numB) => {
+  return numA * numB;
+};
+export const division = (numA, numB) => {
+  return numA / numB;
 };

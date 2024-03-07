@@ -1,5 +1,10 @@
 import readline from "readline";
-import { doArithmeticOperation } from "./operations.js";
+import {
+  addition,
+  division,
+  multiplication,
+  subtraction,
+} from "./operations.js";
 
 export const calculator = {
   operation: {},
@@ -10,7 +15,7 @@ export const calculator = {
   }),
   chooseNumA() {
     this.myReadline.question("Add num A: ", (input) => {
-      if (isNaN(input)) {
+      if (isNaN(input) || !input) {
         console.log("Please give valid number");
         return this.chooseNumA();
       }
@@ -20,7 +25,7 @@ export const calculator = {
   },
   chooseNumB() {
     this.myReadline.question("Add num B: ", (input) => {
-      if (isNaN(input)) {
+      if (isNaN(input) || !input) {
         console.log("Please give valid number");
         return this.chooseNumB();
       }
@@ -32,28 +37,16 @@ export const calculator = {
     let result;
     switch (this.operation.sign) {
       case "+":
-        result = doArithmeticOperation(
-          this.numbers.numA,
-          this.numbers.numB
-        ).addition();
+        result = addition(this.numbers.numA, this.numbers.numB);
         break;
       case "-":
-        result = doArithmeticOperation(
-          this.numbers.numA,
-          this.numbers.numB
-        ).subtraction();
+        result = subtraction(this.numbers.numA, this.numbers.numB);
         break;
       case "*":
-        result = doArithmeticOperation(
-          this.numbers.numA,
-          this.numbers.numB
-        ).multiplication();
+        result = multiplication(this.numbers.numA, this.numbers.numB);
         break;
       case "/":
-        result = doArithmeticOperation(
-          this.numbers.numA,
-          this.numbers.numB
-        ).division();
+        result = division(this.numbers.numA, this.numbers.numB);
         break;
     }
     console.log(
