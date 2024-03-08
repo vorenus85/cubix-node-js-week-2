@@ -8,7 +8,8 @@ import {
 
 const calculator = () => {
   let operator = {}
-  const numbers = {}
+  let numA = null
+  let numB = null
   const myReadline = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -21,7 +22,7 @@ const calculator = () => {
         console.log('Please give valid number')
         return chooseNumA()
       }
-      numbers.numA = parseFloat(input, 10)
+      numA = parseFloat(input, 10)
       return chooseNumB()
     })
   }
@@ -39,7 +40,7 @@ const calculator = () => {
         return chooseNumB()
       }
 
-      numbers.numB = parseFloat(input, 10)
+      numB = parseFloat(input, 10)
       return showResult()
     })
   }
@@ -48,16 +49,16 @@ const calculator = () => {
     let final
     switch (operator) {
       case '+':
-        final = addition(numbers.numA, numbers.numB)
+        final = addition(numA, numB)
         break
       case '-':
-        final = subtraction(numbers.numA, numbers.numB)
+        final = subtraction(numA, numB)
         break
       case '*':
-        final = multiplication(numbers.numA, numbers.numB)
+        final = multiplication(numA, numB)
         break
       case '/':
-        final = division(numbers.numA, numbers.numB)
+        final = division(numA, numB)
         break
     }
 
