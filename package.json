@@ -4,18 +4,27 @@
   "description": "Nodejs calculator app to practice stdin, stdout",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "keywords": [
     "colors",
     "calculator",
-    "nodejs"
+    "nodejs",
+    "chalk"
   ],
   "type": "module",
   "author": "Janos Perge",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.3.0",
-    "colors": "^1.4.0"
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5"
   }
 }
