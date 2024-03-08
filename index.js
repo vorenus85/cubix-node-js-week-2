@@ -1,3 +1,3 @@
-import { startCalculator } from './modules/calculator.js'
+import { start } from './modules/calculator.js'
 
-startCalculator()
+start()
