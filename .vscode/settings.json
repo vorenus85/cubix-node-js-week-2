@@ -2,5 +2,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "eslint.validate": ["javascript", { "autoFix": true, "language": "vue" }]
+  "eslint.validate": ["javascript", { "autoFix": true, "language": "js" }]
 }
