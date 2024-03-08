@@ -1,82 +1,98 @@
-import readline from "readline";
+import readline from 'readline'
 import {
   addition,
   division,
   multiplication,
   subtraction,
-} from "./operations.js";
+} from './operations.js'
 
-export const calculator = {
-  operator: null,
-  numbers: {},
-  myReadline: readline.createInterface({
+const calculator = () => {
+  let operator = {}
+  const numbers = {}
+  const myReadline = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-  }),
-  chooseNumA() {
-    this.myReadline.question("Add num A: ", (input) => {
+  })
+
+  const chooseNumA = () => {
+    myReadline.question('Add num A: ', (input) => {
       if (isNaN(input) || !input) {
-        console.log("Please give valid number");
-        return this.chooseNumA();
+        // eslint-disable-next-line no-console
+        console.log('Please give valid number')
+        return chooseNumA()
       }
-      this.numbers.numA = parseInt(input, 10);
-      return this.chooseNumB();
-    });
-  },
-  chooseNumB() {
-    this.myReadline.question("Add num B: ", (input) => {
-      console.log("adasdasd", parseInt(input, 10), this.operation);
-      if (this.operator === "/" && parseInt(input, 10) === 0) {
-        console.log("If operation is division cannot add 0 to second argument");
-        return this.chooseNumB();
+      numbers.numA = parseFloat(input, 10)
+      return chooseNumB()
+    })
+  }
+
+  const chooseNumB = () => {
+    myReadline.question('Add num B: ', (input) => {
+      if (operator === '/' && parseFloat(input, 10) === 0) {
+        // eslint-disable-next-line no-console
+        console.log('If operation is division cannot add 0 to second argument')
+        return chooseNumB()
       }
       if (isNaN(input) || !input) {
-        console.log("Please give valid number");
-        return this.chooseNumB();
+        // eslint-disable-next-line no-console
+        console.log('Please give valid number')
+        return chooseNumB()
       }
 
-      this.numbers.numB = parseInt(input, 10);
-      return this.showResult();
-    });
-  },
-  showResult() {
-    let final;
-    switch (this.operator) {
-      case "+":
-        final = addition(this.numbers.numA, this.numbers.numB);
-        break;
-      case "-":
-        final = subtraction(this.numbers.numA, this.numbers.numB);
-        break;
-      case "*":
-        final = multiplication(this.numbers.numA, this.numbers.numB);
-        break;
-      case "/":
-        final = division(this.numbers.numA, this.numbers.numB);
-        break;
+      numbers.numB = parseFloat(input, 10)
+      return showResult()
+    })
+  }
+
+  const showResult = () => {
+    let final
+    switch (operator) {
+      case '+':
+        final = addition(numbers.numA, numbers.numB)
+        break
+      case '-':
+        final = subtraction(numbers.numA, numbers.numB)
+        break
+      case '*':
+        final = multiplication(numbers.numA, numbers.numB)
+        break
+      case '/':
+        final = division(numbers.numA, numbers.numB)
+        break
     }
-    console.log(`${final?.operationWithString}`);
-    this.myReadline.close();
-  },
-  start() {
-    this.myReadline.question("Choose operation sign: ", (input) => {
+
+    // eslint-disable-next-line no-console
+    console.log(`${final?.operationWithString}`)
+    myReadline.close()
+  }
+
+  const start = () => {
+    myReadline.question('Choose operation sign: ', (input) => {
       switch (true) {
-        case input === "+":
-          this.operator = "+";
-          return this.chooseNumA();
-        case input === "-":
-          this.operator = "-";
-          return this.chooseNumA();
-        case input === "*":
-          this.operator = "*";
-          return this.chooseNumA();
-        case input === "/":
-          this.operator = "/";
-          return this.chooseNumA();
+        case input === '+':
+          operator = '+'
+          break
+        case input === '-':
+          operator = '-'
+          break
+        case input === '*':
+          operator = '*'
+          break
+        case input === '/':
+          operator = '/'
+          break
         default:
-          console.log("Please choose valid operation sign: [-+/*]");
-          return this.start();
+          // eslint-disable-next-line no-console
+          console.log('Please choose valid operation sign: [-+/*]')
+          return start()
       }
-    });
-  },
-};
+      return chooseNumA()
+    })
+  }
+
+  return { start }
+}
+
+export function startCalculator() {
+  calculator().start()
+}
